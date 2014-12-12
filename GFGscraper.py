@@ -80,7 +80,7 @@ def hitPage(url = "http://www.geeksforgeeks.org/tag/amazon/"):
     try:
         br.open(url)
     except:
-        print "what page for interview exp is this, man? " + url
+        print "what page for interview exp is this, man? *Usually this is because all the pages have finished. :) " + url
         return
     #different thread for link on same page
     #same thread to iterate of each of the pages
