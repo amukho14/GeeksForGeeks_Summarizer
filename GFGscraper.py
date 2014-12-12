@@ -8,11 +8,10 @@ from mechanize import Browser
 from bs4 import BeautifulSoup
 from bs4.dammit import EntitySubstitution
 import ConfigParser
+from datetime import datetime
 
 
 def substitute_html_entities(str):
-    # return EntitySubstitution.substitute_html(str)
-    # return EntitySubstitution.substitute_html(str).replace("&acirc;&euro;&trade;","\'").replace("&acirc;&euro;&oelig;","\"").replace("&acirc;&euro;","\"").replace("&gt",">")\
     return EntitySubstitution.substitute_html(str).replace("&ldquo;","\"").replace("&rdquo;","\"").replace("&rsquo;","'")
 
 
@@ -21,9 +20,6 @@ def getOneExperience(q, path):
     while True:
 
         url = q.get()
-        print url
-        # pathToFile = "C:\\Users\\amukhopadhyay\\Desktop\\gfg.html"
-        # pathToFile = path
         writeToFile=""
 
         br = Browser()
@@ -72,6 +68,7 @@ def getOneExperience(q, path):
 
 def hitPage(url = "http://www.geeksforgeeks.org/tag/amazon/"):
     #from the page extract all the interviewExperiencesLinks
+    print "we're on page "+url
     br = Browser()
     br.set_handle_robots(False)
     br.set_handle_equiv(False)
@@ -125,6 +122,10 @@ Config.read("config.ini")
 x= ConfigSectionMap('Paths')
 path = ConfigSectionMap("Paths")['path']
 MY_LOCK = threading.Lock()
+# url = "http://www.geeksforgeeks.org/tag/amazon/"
+print str(datetime.now().time())
+hitPage()
 for i in range(2,17):
-    url = "http://www.geeksforgeeks.org/tag/amazon/page/"+str(i)+"/"
+    url = "http://www.geeksforgeeks.org/tag/amazon/page/"+str(17-i)+"/"
     hitPage(url)
+print str(datetime.now().time())
